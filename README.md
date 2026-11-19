@@ -37,21 +37,36 @@ API desenvolvida com **FastAPI** para gerenciamento de planos, modalidades e cad
 ## Estrutura do projeto
 
 ```text
-aoi-fastapi/
+api-fastapi/
 │
-├── main.py
-├── database.py
-├── models.py
-├── schemas.py
-├── crud.py
 ├── requirements.txt
 ├── .gitignore
 │
-└── routers/
-    ├── cadastros.py
-    ├── modalidades.py
-    └── planos.py
+└── src/
+    └── app/
+        ├── main.py
+        ├── database.py
+        │
+        ├── planos/
+        │   ├── models.py
+        │   ├── schemas.py
+        │   ├── crud.py
+        │   └── router.py
+        │
+        ├── modalidades/
+        │   ├── models.py
+        │   ├── schemas.py
+        │   ├── crud.py
+        │   └── router.py
+        │
+        └── cadastros/
+            ├── models.py
+            ├── schemas.py
+            ├── crud.py
+            └── router.py
 ```
+
+Cada domínio (`planos`, `modalidades`, `cadastros`) concentra seus próprios modelos, schemas, regras de negócio (`crud.py`) e rotas, em vez de compartilhar um único arquivo com as outras entidades.
 
 ## Como executar o projeto
 
@@ -64,7 +79,7 @@ pip install -r requirements.txt
 ### 2. Iniciar a API
 
 ```bash
-uvicorn main:app --reload
+uvicorn app.main:app --app-dir src --reload
 ```
 
 ### 3. Acessar a documentação
