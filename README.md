@@ -40,30 +40,38 @@ API desenvolvida com **FastAPI** para gerenciamento de planos, modalidades e cad
 api-fastapi/
 │
 ├── requirements.txt
+├── requirements-dev.txt
+├── pytest.ini
 ├── .gitignore
 │
-└── src/
-    └── app/
-        ├── main.py
-        ├── database.py
-        │
-        ├── planos/
-        │   ├── models.py
-        │   ├── schemas.py
-        │   ├── crud.py
-        │   └── router.py
-        │
-        ├── modalidades/
-        │   ├── models.py
-        │   ├── schemas.py
-        │   ├── crud.py
-        │   └── router.py
-        │
-        └── cadastros/
-            ├── models.py
-            ├── schemas.py
-            ├── crud.py
-            └── router.py
+├── src/
+│   └── app/
+│       ├── main.py
+│       ├── database.py
+│       │
+│       ├── planos/
+│       │   ├── models.py
+│       │   ├── schemas.py
+│       │   ├── crud.py
+│       │   └── router.py
+│       │
+│       ├── modalidades/
+│       │   ├── models.py
+│       │   ├── schemas.py
+│       │   ├── crud.py
+│       │   └── router.py
+│       │
+│       └── cadastros/
+│           ├── models.py
+│           ├── schemas.py
+│           ├── crud.py
+│           └── router.py
+│
+└── tests/
+    ├── conftest.py
+    ├── planos/
+    ├── modalidades/
+    └── cadastros/
 ```
 
 Cada domínio (`planos`, `modalidades`, `cadastros`) concentra seus próprios modelos, schemas, regras de negócio (`crud.py`) e rotas, em vez de compartilhar um único arquivo com as outras entidades.
@@ -91,6 +99,15 @@ http://127.0.0.1:8000/docs
 ```
 
 A documentação interativa permite visualizar e testar os endpoints da API.
+
+## Testes
+
+Os testes unitários cobrem o `crud.py` de cada domínio (`planos`, `modalidades`, `cadastros`), usando SQLite em memória.
+
+```bash
+pip install -r requirements-dev.txt
+pytest
+```
 
 ## Banco de dados
 
